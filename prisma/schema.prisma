@@ -50,6 +50,7 @@ model Emergency {
   service     Service
   description String
   location    String
+  coordinates String
   status      Status
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
