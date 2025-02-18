@@ -11,10 +11,10 @@ import { ConfigModule } from '@nestjs/config';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    UsersModule,
-    EmergenciesModule,
-    // AuthModule,
     PrismaModule,
+    UsersModule,
+    AuthModule,
+    EmergenciesModule,
   ],
   providers: [PrismaService],
 })

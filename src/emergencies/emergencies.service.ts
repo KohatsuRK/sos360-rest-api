@@ -7,7 +7,6 @@ import {
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateEmergencyDto } from './dto/create-emergency.dto';
 import { UpdateEmergencyDto } from './dto/update-emergency.dto';
-import { EmergencyResponse } from './types/emergency.types';
 import { UserType, Status } from '@prisma/client';
 
 @Injectable()
