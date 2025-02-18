@@ -31,30 +31,32 @@ enum Status {
 }
 
 model User {
-  id String @id @default(uuid())
-  name String
-  email String @unique
-  password String
-  type UserType
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  cpf       String?
+  phone     String?
+  type      UserType
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  requestedEmergencies Emergency[] @relation("requester")  
-  attendedEmergencies Emergency[] @relation("attendant")  
+  requestedEmergencies Emergency[] @relation("requester")
+  attendedEmergencies  Emergency[] @relation("attendant")
 }
 
 model Emergency {
-  id          String    @id @default(uuid())
-  service       Service
+  id          String   @id @default(uuid())
+  service     Service
   description String
   location    String
   status      Status
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   requesterId String
-  requester   User      @relation("requester", fields: [requesterId], references: [id])
+  requester   User   @relation("requester", fields: [requesterId], references: [id])
 
   attendantId String?
-  attendant   User?     @relation("attendant", fields: [attendantId], references: [id])
+  attendant   User?   @relation("attendant", fields: [attendantId], references: [id])
 }
