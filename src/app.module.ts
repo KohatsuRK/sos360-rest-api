@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { PrismaService } from './prisma/prisma.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
+import { NotificationGateway } from './notification/notification.gateway';
 
 @Module({
   imports: [
@@ -16,6 +17,6 @@ import { ConfigModule } from '@nestjs/config';
     AuthModule,
     EmergenciesModule,
   ],
-  providers: [PrismaService],
+  providers: [PrismaService, NotificationGateway],
 })
 export class AppModule {}

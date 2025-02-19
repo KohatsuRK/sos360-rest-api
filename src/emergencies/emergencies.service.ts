@@ -8,10 +8,11 @@ import { PrismaService } from '../prisma/prisma.service';
 import { CreateEmergencyDto } from './dto/create-emergency.dto';
 import { UpdateEmergencyDto } from './dto/update-emergency.dto';
 import { UserType, Status } from '@prisma/client';
+import { NotificationGateway } from '../notification/notification.gateway';
 
 @Injectable()
 export class EmergenciesService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService, private notificationGateway: NotificationGateway) {}
 
   async create(
     createEmergencyDto: CreateEmergencyDto,
@@ -47,6 +48,11 @@ export class EmergenciesService {
         },
       },
     });
+
+    if(emergency){
+      // Send notification to all attendants
+      this.notificationGateway.notifyNewEmergency(emergency);
+    }
 
     return emergency;
   }
