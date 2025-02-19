@@ -13,6 +13,8 @@ RUN npx prisma generate
 
 RUN yarn build
 
+CMD npx prisma migrate deploy
+
 # Production
 FROM node:18-alpine as production
 
